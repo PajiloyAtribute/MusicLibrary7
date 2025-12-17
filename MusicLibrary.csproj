@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>aspnet-MusicLibrary-746f5f0d-c52a-42fb-944f-8d341642d3b3</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="10.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="10.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="10.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Lab3-MusicRep\Data\" />
+    <Folder Include="Lab3-MusicRep\Migrations\FixArtistSongCascade\" />
+    <Folder Include="Lab3-MusicRep\Migrations\ImplicitManyToMany\" />
+    <Folder Include="Lab3-MusicRep\Models\" />
+    <Folder Include="Lab3-MusicRep\Repository\" />
+  </ItemGroup>
+
+</Project>

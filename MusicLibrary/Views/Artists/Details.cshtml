@@ -1,0 +1,23 @@
+@model MusicDatabase.Models.Artist
+
+@{
+    ViewData["Title"] = "Artist Details";
+}
+
+<h1>@Model.Name</h1>
+
+@if (!string.IsNullOrEmpty(Model.PhotoFileName))
+{
+    <img src="~/images/artists/@Model.PhotoFileName" style="max-width:300px;max-height:300px" />
+}
+
+<p>Country: @Model.Country</p>
+<p>BirthDate: @Model.BirthDate?.ToString("yyyy-MM-dd")</p>
+
+<h3>Songs</h3>
+<ul>
+@foreach (var s in Model.Songs)
+{
+    <li>@s.Title</li>
+}
+</ul>

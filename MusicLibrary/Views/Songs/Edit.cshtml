@@ -1,0 +1,26 @@
+@model MusicDatabase.Models.Song
+
+<h1>Edit Song</h1>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="SongId" />
+    <div class="mb-3">
+        <label class="form-label">Title</label>
+        <input asp-for="Title" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Album</label>
+        <select asp-for="AlbumId" class="form-control">
+            <option value="">--select--</option>
+            @foreach(var al in ViewBag.Albums as List<MusicDatabase.Models.Album>)
+            {
+                <option value="@al.AlbumId" selected="@(al.AlbumId==Model.AlbumId)">@al.Title</option>
+            }
+        </select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Duration (seconds)</label>
+        <input asp-for="DurationSeconds" class="form-control" />
+    </div>
+    <button class="btn btn-primary">Save</button>
+</form>

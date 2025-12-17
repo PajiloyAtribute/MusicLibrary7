@@ -1,0 +1,14 @@
+@model MusicDatabase.Models.Album
+
+<h1>Delete Album</h1>
+
+<div>
+    <h4>@Model.Title</h4>
+    <p>Artist: @Model.Artist?.Name</p>
+</div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="AlbumId" />
+    <button class="btn btn-danger">Delete</button>
+    <a class="btn btn-secondary" href="@Url.Action("Index")">Cancel</a>
+</form>

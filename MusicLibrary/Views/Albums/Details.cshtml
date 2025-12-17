@@ -1,0 +1,46 @@
+@model MusicDatabase.Models.Album
+
+<h1>@Model.Title</h1>
+<p>Artist: @Model.Artist?.Name</p>
+<p>Release: @Model.ReleaseDate.ToString("yyyy-MM-dd")</p>
+<p>Genre: @Model.Genre</p>
+
+<div class="mb-3">
+    <a class="btn btn-primary" asp-controller="Songs" asp-action="Create" asp-route-albumId="@Model.AlbumId">Add Song</a>
+    <a class="btn btn-secondary" asp-action="Index" asp-controller="Albums">Back to list</a>
+</div>
+
+<h3>Songs</h3>
+@if (Model.Songs != null && Model.Songs.Any())
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Duration</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach(var s in Model.Songs)
+        {
+            <tr>
+                <td>@s.Title</td>
+                <td>@TimeSpan.FromSeconds(s.DurationSeconds).ToString("mm\\:ss")</td>
+                <td>
+                    <a class="btn btn-sm btn-info" asp-controller="Songs" asp-action="Details" asp-route-id="@s.SongId">Details</a>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a class="btn btn-sm btn-warning" asp-controller="Songs" asp-action="Edit" asp-route-id="@s.SongId">Edit</a>
+                        <a class="btn btn-sm btn-danger" asp-controller="Songs" asp-action="Delete" asp-route-id="@s.SongId">Delete</a>
+                    }
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No songs on this album.</p>
+}

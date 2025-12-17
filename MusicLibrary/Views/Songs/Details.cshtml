@@ -1,0 +1,13 @@
+@model MusicDatabase.Models.Song
+
+<h1>@Model.Title</h1>
+<p>Album: @Model.Album?.Title</p>
+<p>Duration: @TimeSpan.FromSeconds(Model.DurationSeconds).ToString("mm\\:ss")</p>
+
+<h3>Artists</h3>
+<ul>
+@foreach(var a in Model.Artists)
+{
+    <li>@a.Name</li>
+}
+</ul>

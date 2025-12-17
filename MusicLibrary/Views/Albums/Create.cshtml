@@ -1,0 +1,30 @@
+@model MusicDatabase.Models.Album
+
+@{
+    ViewData["Title"] = "Create Album";
+}
+
+<h1>Create Album</h1>
+
+<form asp-action="Create" method="post">
+    <div class="mb-3">
+        <label class="form-label">Title</label>
+        <input asp-for="Title" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Artist</label>
+        <select asp-for="ArtistId" class="form-control" asp-items="@(new Microsoft.AspNetCore.Mvc.Rendering.SelectList(ViewBag.Artists, "ArtistId", "Name"))">
+            <option value="">--select--</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Release Date</label>
+        <input asp-for="ReleaseDate" type="date" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Genre</label>
+        <input asp-for="Genre" class="form-control" />
+    </div>
+    <button class="btn btn-primary">Create</button>
+    <a class="btn btn-secondary" asp-action="Index">Back</a>
+</form>

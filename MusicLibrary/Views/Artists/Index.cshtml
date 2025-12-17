@@ -1,0 +1,57 @@
+@model List<MusicDatabase.Models.Artist>
+
+@{
+    ViewData["Title"] = "Artists";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>Artists</h1>
+    <div>
+        <a class="btn btn-outline-primary me-2" asp-controller="Home" asp-action="Index">Home</a>
+        <a class="btn btn-outline-primary me-2" asp-controller="Albums" asp-action="Index">Albums</a>
+        <a class="btn btn-outline-primary me-2" asp-controller="Songs" asp-action="Index">Songs</a>
+        @if (User.IsInRole("Admin"))
+        {
+            <a class="btn btn-primary" asp-action="Create">Create Artist</a>
+        }
+    </div>
+</div>
+
+@if (Model != null && Model.Any())
+{
+    <div class="entity-list">
+        <div class="entity-grid">
+            @foreach(var a in Model)
+            {
+                <div class="entity-card">
+                    <div class="thumb">
+                        @if (!string.IsNullOrEmpty(a.PhotoFileName))
+                        {
+                            <img src="~/images/artists/@a.PhotoFileName" alt="@a.Name" />
+                        }
+                        else
+                        {
+                            <img src="~/images/placeholder-artist.png" alt="@a.Name" />
+                        }
+                    </div>
+                    <div class="meta">
+                        <h5 class="mb-1">@a.Name</h5>
+                        <div class="text-muted">@a.Country</div>
+                    </div>
+                    <div class="actions">
+                        <a class="btn btn-sm btn-info" asp-action="Details" asp-route-id="@a.ArtistId">Details</a>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a class="btn btn-sm btn-warning" asp-action="Edit" asp-route-id="@a.ArtistId">Edit</a>
+                            <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@a.ArtistId">Delete</a>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+else
+{
+    <div class="home-empty">No artists found.</div>
+}
