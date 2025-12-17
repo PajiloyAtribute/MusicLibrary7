@@ -4,16 +4,45 @@
     ViewData["Title"] = "Artists";
 }
 
-<div class="d-flex justify-content-between align-items-center mb-3">
-    <h1>Artists</h1>
-    <div>
-        <a class="btn btn-outline-primary me-2" asp-controller="Home" asp-action="Index">Home</a>
-        <a class="btn btn-outline-primary me-2" asp-controller="Albums" asp-action="Index">Albums</a>
-        <a class="btn btn-outline-primary me-2" asp-controller="Songs" asp-action="Index">Songs</a>
-        @if (User.IsInRole("Admin"))
-        {
-            <a class="btn btn-primary" asp-action="Create">Create Artist</a>
-        }
+<style>
+    .artists-header {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        color: white;
+        padding: 2rem 1.5rem;
+        border-radius: 1rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 8px 32px rgba(245, 87, 108, 0.3);
+    }
+
+    .artists-header h1 {
+        margin: 0;
+        font-weight: 700;
+        font-size: 2.5rem;
+    }
+
+    .artists-header p {
+        margin: 0.5rem 0 0 0;
+        opacity: 0.95;
+        font-size: 1.05rem;
+    }
+</style>
+
+<div class="artists-header">
+    <div class="d-flex justify-content-between align-items-start">
+        <div>
+            <h1>Artists</h1>
+            <p>Discover amazing musicians</p>
+        </div>
+        <div class="text-end" style="min-width: 200px;">
+            <a class="btn btn-light me-2" asp-controller="Home" asp-action="Index" style="font-weight: 600;">Home</a>
+            <a class="btn btn-light me-2" asp-controller="Albums" asp-action="Index" style="font-weight: 600;">Albums</a>
+            <a class="btn btn-light" asp-controller="Songs" asp-action="Index" style="font-weight: 600;">Songs</a>
+            @if (User.IsInRole("Admin"))
+            {
+                <br/>
+                <a class="btn btn-warning mt-2" asp-action="Create" style="font-weight: 600;">+ Create Artist</a>
+            }
+        </div>
     </div>
 </div>
 
@@ -35,7 +64,7 @@
                         }
                     </div>
                     <div class="meta">
-                        <h5 class="mb-1">@a.Name</h5>
+                        <h5>@a.Name</h5>
                         <div class="text-muted">@a.Country</div>
                     </div>
                     <div class="actions">
@@ -53,5 +82,8 @@
 }
 else
 {
-    <div class="home-empty">No artists found.</div>
+    <div class="home-empty" style="padding: 4rem 2rem; background: white; border-radius: 1rem; border: 2px dashed #dee2e6;">
+        <h4 style="color: #6c757d;">No artists found.</h4>
+        <p style="color: #adb5bd; margin-top: 0.5rem;">Add your favorite artists to get started!</p>
+    </div>
 }
